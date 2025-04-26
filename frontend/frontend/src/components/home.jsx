@@ -242,9 +242,9 @@ function Home() {
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 className="bg-off-white p-6 rounded-full shadow-lg"
               >
-                <h3 className="text-lg font-semibold text-deep-green mb-2">{item.title}</h3>
+                <h3 className="text-lg font-semibold text-white mb mb-2">{item.title}</h3>
                 <p className="text-3xl font-bold text-yellow mb-2">{item.stat}</p>
-                <p className="text-gray-700 text-sm">{item.desc}</p>
+                <p className="text-white  text-sm">{item.desc}</p>
               </motion.div>
             ))}
           </div>

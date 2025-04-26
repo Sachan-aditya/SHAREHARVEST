@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Filter } from "lucide-react";
 
 function FoodItems({ user }) {
   const [foodItems, setFoodItems] = useState([]);
@@ -34,53 +33,35 @@ function FoodItems({ user }) {
   };
 
   return (
-    <div className="min-h-screen bg-food-items-bg bg-cover bg-center relative">
-      <div className="absolute inset-0 bg-medium-green opacity-60"></div>
-      <div className="relative w-full max-w-full py-16">
-        {/* Heading with Quote */}
-        <div className="text-center mb-12">
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-4">
-            Available Food Items
-          </h2>
-          <p className="text-2xl italic text-yellow flex items-center justify-center">
-            <span className="mr-2">"</span>Sharing is Caring<span className="ml-2">"</span>
-          </p>
-        </div>
-
-        {/* Filter Option (Simulated) */}
-        <div className="flex justify-end px-6 mb-8">
-          <button className="flex items-center bg-yellow text-white px-4 py-2 rounded-lg hover:bg-amber-400 transition-colors duration-300">
-            <Filter className="h-5 w-5 mr-2" />
-            Filter by Category
-          </button>
-        </div>
-
-        {/* Food Items Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6">
+    <div className="min-h-screen bg-food-bg bg-cover bg-center py-16">
+      <div className="absolute inset-0 bg-gray-900 opacity-50"></div>
+      <div className="relative container mx-auto px-4">
+        <h2 className="text-4xl font-heading font-bold text-white text-center mb-12">
+          Available Food Items
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {foodItems.map((item) => (
             <div
               key={item.id}
-              className="bg-off-white rounded-2xl shadow-lg overflow-hidden transform hover:shadow-xl hover:scale-105 transition-all duration-300"
+              className="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform"
             >
               <img
-                src={item.photoUrl || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"}
+                src={item.photoUrl || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"}
                 alt={item.name}
-                className="w-full h-56 object-cover"
+                className="w-full h-48 object-cover"
               />
               <div className="p-6">
-                <h3 className="text-2xl font-semibold text-deep-green mb-2">{item.name}</h3>
-                <p className="text-gray-700 mb-2">{item.description}</p>
-                <p className="text-deep-green font-medium mb-1">Quantity: {item.quantity}</p>
-                <p className="text-deep-green font-medium mb-1">Category: {item.category || "General"}</p>
-                <p className="text-deep-green font-medium mb-1">Expires: {item.expiry || "N/A"}</p>
-                <p className="text-gray-700 mb-4">Donor: {item.donor.username}</p>
+                <h3 className="text-xl font-heading font-semibold text-soil-brown">{item.name}</h3>
+                <p className="text-gray-600 mt-2">{item.description}</p>
+                <p className="text-soil-brown font-medium mt-2">Quantity: {item.quantity}</p>
+                <p className="text-gray-600">Donor: {item.donor.username}</p>
                 {user && user.role === "RECEIVER" && (
                   <button
                     onClick={() => handleRequest(item.id)}
-                    className="w-full bg-yellow text-white py-3 rounded-lg font-semibold hover:bg-amber-400 transition-colors duration-300"
+                    className="mt-4 w-full bg-leaf-green text-deep-green py-2 rounded-full hover:bg-harvest-gold transition"
                     aria-label={`Request ${item.name}`}
                   >
-                    Request Now
+                    Request
                   </button>
                 )}
               </div>
