@@ -29,12 +29,12 @@ function Register({ setUser }) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-xl shadow-2xl">
-        <h2 className="text-3xl font-bold text-gray-900 text-center">Register</h2>
+    <div className="min-h-screen bg-light-green flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-3xl shadow-2xl">
+        <h2 className="text-3xl font-bold text-deep-green text-center">Create Your Account</h2>
         <form className="mt-8 space-y-6" onSubmit={handleRegister}>
           <div>
-            <label htmlFor="username" className="text-sm font-medium text-gray-700">
+            <label htmlFor="username" className="text-sm font-medium text-darker-green">
               Username
             </label>
             <input
@@ -42,12 +42,12 @@ function Register({ setUser }) {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              className="mt-1 block w-full p-3 border border-medium-green rounded-lg shadow-sm focus:ring-yellow focus:border-yellow"
               placeholder="Enter username"
             />
           </div>
           <div>
-            <label htmlFor="email" className="text-sm font-medium text-gray-700">
+            <label htmlFor="email" className="text-sm font-medium text-darker-green">
               Email
             </label>
             <input
@@ -55,12 +55,12 @@ function Register({ setUser }) {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              className="mt-1 block w-full p-3 border border-medium-green rounded-lg shadow-sm focus:ring-yellow focus:border-yellow"
               placeholder="Enter email"
             />
           </div>
           <div>
-            <label htmlFor="password" className="text-sm font-medium text-gray-700">
+            <label htmlFor="password" className="text-sm font-medium text-darker-green">
               Password
             </label>
             <input
@@ -68,19 +68,19 @@ function Register({ setUser }) {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              className="mt-1 block w-full p-3 border border-medium-green rounded-lg shadow-sm focus:ring-yellow focus:border-yellow"
               placeholder="Enter password"
             />
           </div>
           <div>
-            <label htmlFor="role" className="text-sm font-medium text-gray-700">
+            <label htmlFor="role" className="text-sm font-medium text-darker-green">
               Role
             </label>
             <select
               id="role"
               value={role}
               onChange={(e) => setRole(e.target.value)}
-              className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              className="mt-1 block w-full p-3 border border-medium-green rounded-lg shadow-sm focus:ring-yellow focus:border-yellow"
             >
               <option value="RECEIVER">Receiver</option>
               <option value="DONOR">Donor</option>
@@ -88,7 +88,7 @@ function Register({ setUser }) {
           </div>
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white p-3 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="w-full bg-yellow text-darker-green font-bold p-3 rounded-full hover:bg-amber-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow transition-all"
           >
             Register
           </button>
