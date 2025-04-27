@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
-import { Utensils, HandHeart, Leaf, Users, Quote } from "lucide-react";
+import { Utensils, HandHeart, Leaf, Quote } from "lucide-react";
 
 function Home() {
   const contentRef = useRef(null);
@@ -16,23 +16,6 @@ function Home() {
     { title: "Hunger", stat: "190M meals", desc: "Shared to fight hunger." },
     { title: "Community", stat: "Thousands", desc: "Connected daily." },
     { title: "Sustainability", stat: "Lowered", desc: "Emissions impact." },
-  ];
-
-  const joinCommunity = [
-    {
-      title: "NGOs",
-      description: "Join as a non-profit to distribute food.",
-      buttonText: "Register NGO",
-      buttonColor: "bg-yellow hover:bg-amber-400",
-      icon: Users,
-    },
-    {
-      title: "Restaurants",
-      description: "Donate surplus as a food business.",
-      buttonText: "Register Restaurant",
-      buttonColor: "bg-yellow hover:bg-amber-400",
-      icon: Users,
-    },
   ];
 
   const customerReviews = [
@@ -101,7 +84,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Join Our Community */}
+      {/* Leaderboard Coming Soon */}
       <section className="py-16 bg-medium-green">
         <div className="container mx-auto px-6 text-center">
           <motion.h2
@@ -111,32 +94,10 @@ function Home() {
             transition={{ duration: 0.8 }}
             className="text-4xl md:text-5xl font-bold text-white mb-12"
           >
-            Join Our Community
+            Leaderboard Coming Soon
           </motion.h2>
-          <div className="flex justify-around flex-wrap gap-8">
-            {joinCommunity.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="w-full sm:w-1/2 lg:w-1/4 p-6"
-              >
-                <div className="flex items-center justify-center mb-4">
-                  <item.icon className="h-12 w-12 text-yellow" />
-                </div>
-                <h3 className="text-2xl font-semibold text-white mb-4">{item.title}</h3>
-                <p className="text-gray-200 mb-6">{item.description}</p>
-                <a
-                  href="/register"
-                  className={`inline-block w-full text-center px-6 py-3 ${item.buttonColor} text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300`}
-                  aria-label={item.buttonText}
-                >
-                  {item.buttonText}
-                </a>
-              </motion.div>
-            ))}
+          <div className="bg-off-white p-6 rounded-xl shadow-md text-gray-800 mb-12">
+            <p className="text-lg">Our leaderboard is under development! Stay tuned for updates and track your contributions.</p>
           </div>
         </div>
       </section>
@@ -233,18 +194,18 @@ function Home() {
             Food Sharing Impact
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {impactStats.map((item, index) => (
+            {impactStats.map((stat, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="bg-off-white p-6 rounded-full shadow-lg"
+                className="bg-off-white p-6 rounded-xl shadow-md text-center"
               >
-                <h3 className="text-lg font-semibold text-white mb mb-2">{item.title}</h3>
-                <p className="text-3xl font-bold text-yellow mb-2">{item.stat}</p>
-                <p className="text-white  text-sm">{item.desc}</p>
+                <h3 className="text-2xl font-bold text-deep-green mb-4">{stat.stat}</h3>
+                <p className="text-lg font-medium text-gray-700">{stat.title}</p>
+                <p className="text-gray-500">{stat.desc}</p>
               </motion.div>
             ))}
           </div>
