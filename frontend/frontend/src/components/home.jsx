@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom"; // Added for client-side navigation
 import { Utensils, HandHeart, Leaf, Quote } from "lucide-react";
 
 function Home() {
@@ -19,27 +20,12 @@ function Home() {
   ];
 
   const customerReviews = [
-    {
-      text: "This platform transformed our NGO’s outreach!",
-      author: "Anita D.",
-      rating: 5,
-    },
-    {
-      text: "Easy to use and impactful for my restaurant.",
-      author: "Vikram S.",
-      rating: 4,
-    },
-    {
-      text: "Connected us to donors seamlessly.",
-      author: "Meena R.",
-      rating: 5,
-    },
+    { text: "This platform transformed our NGO’s outreach!", author: "Anita D.", rating: 5 },
+    { text: "Easy to use and impactful for my restaurant.", author: "Vikram S.", rating: 4 },
+    { text: "Connected us to donors seamlessly.", author: "Meena R.", rating: 5 },
   ];
 
-  const singleQuote = {
-    text: "Together, we nourish and sustain.",
-    author: "ShareHarvest Vision",
-  };
+  const singleQuote = { text: "Together, we nourish and sustain.", author: "ShareHarvest Vision" };
 
   return (
     <div ref={contentRef} className="bg-light-green font-sans">
@@ -63,27 +49,27 @@ function Home() {
           >
             Unite to reduce waste and feed communities across India.
           </motion.p>
-          <motion.a
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
-            href="/register"
-            className="inline-block bg-yellow text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-amber-400 transition-colors duration-300"
           >
-            Get Started
-          </motion.a>
+            <Link
+              to="/register"
+              className="inline-block bg-yellow text-deep-green px-8 py-4 rounded-lg font-semibold text-base sm:text-lg shadow-md hover:bg-amber-400 focus:bg-amber-400 focus:outline-none focus:ring-2 focus:ring-yellow focus:ring-offset-2 transition-all duration-300 whitespace-nowrap"
+              aria-label="Get started with ShareHarvest"
+            >
+              Get Started
+            </Link>
+          </motion.div>
           <motion.div
-           href="/register"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
-            
             className="mt-12 flex justify-center items-center text-white"
           >
-           
             <Quote className="h-8 w-8 mr-4" />
             <p className="text-lg italic">{`"${singleQuote.text}" — ${singleQuote.author}`}</p>
-            href="/register
           </motion.div>
         </div>
       </section>
