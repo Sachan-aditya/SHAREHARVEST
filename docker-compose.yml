@@ -1,35 +1,38 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  app:
-    image: shareharvest-app:latest
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8083:8083"
+  # MySQL Database Service for ShareHarvest Application
+  mysqldb:
+    image: mysql:8
+    container_name: shareharvest_mysql
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/shareharvest?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=Adityasac$029
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SPRING_JPA_SHOW_SQL=true
-      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL8Dialect
-      - SPRING_JPA_OPEN_IN_VIEW=false
-    depends_on:
-      - mysqldb
+      MYSQL_ROOT_PASSWORD: Adityasac$029
+      MYSQL_DATABASE: shareharvest
+    ports:
+      - "3307:3306"   # Maps host port 3307 to MySQL's internal port 3306
+    volumes:
+      - mysql_data:/var/lib/mysql
     networks:
       - shareharvest-network
 
-  mysqldb:
-    image: mysql:8.0
-    environment:
-      - MYSQL_ROOT_PASSWORD=Adityasac$029
-      - MYSQL_DATABASE=shareharvest
+  # Spring Boot Application Service for ShareHarvest Project
+  shareharvest_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: shareharvest_app
     ports:
-      - "3307:3306"   # Host port 3307 maps to MySQL's internal 3306 port.
-    volumes:
-      - mysql-data:/var/lib/mysql
+      - "8083:8083"
+    environment:
+
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: Adityasac$029
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: true
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL8Dialect
+      SPRING_JPA_OPEN_IN_VIEW: false
+    depends_on:
+      - mysqldb
     networks:
       - shareharvest-network
 
@@ -38,5 +41,5 @@ networks:
     driver: bridge
 
 volumes:
-  mysql-data:
+  mysql_data:
     driver: local
