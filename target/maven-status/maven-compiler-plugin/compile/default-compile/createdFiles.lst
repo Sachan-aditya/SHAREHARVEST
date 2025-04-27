@@ -1,0 +1,17 @@
+com\example\shareharvest\services\LanguageService.class
+com\example\shareharvest\controller\ContentController.class
+com\example\shareharvest\services\SocialShareService.class
+com\example\shareharvest\controller\RequestController.class
+com\example\shareharvest\controller\FoodItemController.class
+com\example\shareharvest\models\User.class
+com\example\shareharvest\repository\UserRepository.class
+com\example\shareharvest\services\UserService.class
+com\example\shareharvest\repository\FoodItemRepository.class
+com\example\shareharvest\models\Request.class
+com\example\shareharvest\models\fooditem.class
+com\example\shareharvest\services\FoodItemService.class
+com\example\shareharvest\controller\UserController.class
+com\example\shareharvest\services\RequestService.class
+com\example\shareharvest\ShareharvestApplication.class
+com\example\shareharvest\config\WebConfig.class
+com\example\shareharvest\repository\requestrepo.class
