@@ -9,25 +9,25 @@ services:
     ports:
       - "8083:8083"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3306/shareharvest?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/shareharvest?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=Adityasac$029
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - SPRING_JPA_SHOW_SQL=true
-      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQLDialect
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL8Dialect
       - SPRING_JPA_OPEN_IN_VIEW=false
     depends_on:
-      - mysql-db
+      - mysqldb
     networks:
       - shareharvest-network
 
-  mysql-db:
+  mysqldb:
     image: mysql:8.0
     environment:
       - MYSQL_ROOT_PASSWORD=Adityasac$029
       - MYSQL_DATABASE=shareharvest
     ports:
-      - "3307:3306"   # ✅ Corrected here
+      - "3307:3306"   # Host port 3307 maps to MySQL's internal 3306 port.
     volumes:
       - mysql-data:/var/lib/mysql
     networks:
@@ -39,3 +39,4 @@ networks:
 
 volumes:
   mysql-data:
+    driver: local
