@@ -73,13 +73,17 @@ function Home() {
             Get Started
           </motion.a>
           <motion.div
+           href="/register"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
+            
             className="mt-12 flex justify-center items-center text-white"
           >
+           
             <Quote className="h-8 w-8 mr-4" />
             <p className="text-lg italic">{`"${singleQuote.text}" — ${singleQuote.author}`}</p>
+            href="/register
           </motion.div>
         </div>
       </section>
