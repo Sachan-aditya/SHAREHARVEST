@@ -1,14 +1,23 @@
-# Use Java 22 base image
-FROM openjdk:22
+# Use an official OpenJDK base image
+FROM openjdk:17-jdk-slim
 
 # Set working directory
 WORKDIR /app
 
-# Copy the JAR file
-COPY target/shareharvest-0.0.1-SNAPSHOT.jar /app/shareharvest-0.0.1-SNAPSHOT.jar
+# Copy Maven/Gradle files and download dependencies
+COPY pom.xml ./
+COPY mvnw ./
+COPY .mvn ./.mvn
+RUN ./mvnw dependency:go-offline
 
-# Expose port 8083
+# Copy source code
+COPY src ./src
+
+# Build the application
+RUN ./mvnw package -DskipTests
+
+# Expose the port
 EXPOSE 8083
 
 # Run the application
-ENTRYPOINT ["java", "-jar", "shareharvest-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "/app/target/shareharvest-0.0.1-SNAPSHOT.jar"]
