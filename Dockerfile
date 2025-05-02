@@ -1,23 +1,19 @@
-# Use an official OpenJDK base image
-FROM openjdk:17-jdk-slim
-
-# Set working directory
+# Build Stage
+FROM maven:3.8.6-openjdk-17 AS build
 WORKDIR /app
-
-# Copy Maven/Gradle files and download dependencies
-COPY pom.xml ./
-COPY mvnw ./
-COPY .mvn ./.mvn
-RUN ./mvnw dependency:go-offline
-
-# Copy source code
+COPY pom.xml .
+COPY mvnw .
+COPY .mvn .mvn
 COPY src ./src
+RUN ./mvnw clean package -DskipTests
 
-# Build the application
-RUN ./mvnw package -DskipTests
+# Package Stage
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 
-# Expose the port
+# Expose port from Railway
 EXPOSE 8083
 
-# Run the application
-CMD ["java", "-jar", "/app/target/shareharvest-0.0.1-SNAPSHOT.jar"]
+# Use dynamic port assignment from Railway
+ENTRYPOINT ["java", "-jar", "app.jar", "--server.port=${PORT}"]
